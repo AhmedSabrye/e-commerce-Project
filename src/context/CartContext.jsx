@@ -10,6 +10,7 @@ export default function CartContextProvider({ children }) {
     const [allProducts, setAllProducts] = useState(null);
     const [totalCartPrice, setTotalCartPrice] = useState(0);
     const [numOfCartItems, setNumOfCartItems] = useState(0);
+    const [cartId, setCartId] = useState(null);
 
     async function getCart() {
         console.log("get cart itself");
@@ -23,7 +24,9 @@ export default function CartContextProvider({ children }) {
                 setNumOfCartItems(res.data.numOfCartItems);
                 setAllProducts(res.data.data.products);
                 setTotalCartPrice(res.data.data.totalCartPrice);
-                console.log("in getcart then");
+                console.log("in getcart then", res);
+                setCartId(res.data.data._id);
+
                 console.log(allProducts, totalCartPrice, numOfCartItems);
             })
             .catch((err) => {
@@ -32,6 +35,9 @@ export default function CartContextProvider({ children }) {
     }
     // const notify = () => toast("Here is your toast.");
     async function addProduct(productId, count) {
+        const addProductToast = toast.loading("Adding Product", {
+            position: "top-right",
+        });
         axios
             .post(
                 "https://ecommerce.routemisr.com/api/v1/cart",
@@ -44,10 +50,12 @@ export default function CartContextProvider({ children }) {
                     },
                 }
             )
-            .then(() => {
+            .then((res) => {
                 toast.success("Product Added Successfully", {
                     position: "top-right",
+                    id: addProductToast,
                 });
+
                 getCart();
             })
             .catch((err) => {
@@ -103,6 +111,7 @@ export default function CartContextProvider({ children }) {
                 numOfCartItems,
                 changeCount,
                 removeItem,
+                cartId,
             }}
         >
             {children}

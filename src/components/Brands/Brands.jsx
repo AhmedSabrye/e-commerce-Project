@@ -35,21 +35,20 @@ export default function Brands() {
 
     return (
         <>
-            <div className=" container mx-auto  p-5 my-5 grid grid-cols-5 gap-5">
+            <div className=" container mx-auto  p-5 my-5 grid grid-cols-6 gap-5">
                 {data.data.data.map((brand) => {
                     return (
                         <Link
                             to={`/brand/${brand._id}`}
                             key={brand._id}
-                            className="bg-emerald-500 rounded-2xl p-3"
+                            className="ring ring-emerald-600 rounded-2xl p-3 hover:scale-125 bg-white duration-300 shadow-xl"
                         >
                             <img
                                 src={brand.image}
                                 alt={brand.name}
                                 className="w-full"
                             />
-                            {brand._id}
-                            <h3>{brand.name}</h3>
+                            <h3 className="text-center my-3 font-extrabold">{brand.name}</h3>
                         </Link>
                     );
                 })}

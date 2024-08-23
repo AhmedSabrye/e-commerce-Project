@@ -14,7 +14,7 @@ export default function ProductDetails() {
     });
     const newData = data?.data.data;
     const [imageCover, setImageCover] = useState(newData?.imageCover);
-    const {addProduct} = useContext(cartContext)
+    const { addProduct } = useContext(cartContext);
     const { modifyWishlistItem, wishlistArray } = useContext(
         wishlistContextObject
     );
@@ -48,8 +48,8 @@ export default function ProductDetails() {
         <div className="bg-white py-6 sm:py-8 lg:py-12">
             <div className="grid gap-8 md:grid-cols-2 mx-auto max-w-screen-xl px-4 md:px-8">
                 {/* images - start */}
-                <div className="grid gap-4 lg:grid-cols-5">
-                    <div className="order-last h-[600px] flex gap-4 overflow-auto lg:order-none lg:flex-col">
+                <div className="grid gap-4  h-[500px] lg:grid-cols-5">
+                    <div className="order-last flex gap-4 overflow-auto lg:order-none lg:flex-col">
                         {newData.images.map((img) => {
                             return (
                                 <div
@@ -71,7 +71,7 @@ export default function ProductDetails() {
                             src={imageCover}
                             loading="lazy"
                             alt={newData.title}
-                            className="h-full w-full object-cover object-center"
+                            className="h-full w-full object-contain bg-white object-center"
                         />
                         <button
                             onClick={() => modifyWishlistItem(newData.id)}
@@ -157,9 +157,7 @@ export default function ProductDetails() {
                                 {newData.price} EGP
                             </span>
                         </div>
-                        <span className="text-sm text-gray-500">
-                            incl. VAT
-                        </span>
+                        <span className="text-sm text-gray-500">incl. VAT</span>
                     </div>
                     {/* price - end */}
                     {/* shipping notice - start */}
@@ -185,7 +183,7 @@ export default function ProductDetails() {
                     {/* buttons - start */}
                     <div className="flex justify-center flex-grow items-end ">
                         <button
-                        onClick={()=>addProduct(newData.id)}
+                            onClick={() => addProduct(newData.id)}
                             className="block w-full cursor-pointer flex-1 rounded-lg bg-emerald-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-emerald-300 transition duration-100 hover:bg-emerald-600 focus-visible:ring active:bg-emerald-700 sm:flex-none md:text-base"
                         >
                             Add to cart

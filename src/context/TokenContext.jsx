@@ -4,6 +4,7 @@ export const tokenContext = createContext(TokenContext);
 
 export default function TokenContext({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token"));
+    
     function newToken(val){
         setToken(val)
         console.log("from token Context" , token)

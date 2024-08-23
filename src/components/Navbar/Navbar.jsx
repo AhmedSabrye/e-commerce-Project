@@ -2,6 +2,7 @@ import { useContext } from "react";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { tokenContext } from "../../context/TokenContext";
+import "./Navbar.css"
 
 export default function Navbar() {
     const { userToken, setUserToken } = useContext(tokenContext);

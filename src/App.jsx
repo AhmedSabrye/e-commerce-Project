@@ -16,8 +16,10 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import WishlistContext from "./context/WishlistContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import ProductDetails from './components/ProductDetails/ProductDetails';
-import Brand from './components/Brand/Brand';
+import ProductDetails from "./components/ProductDetails/ProductDetails";
+import Brand from "./components/Brand/Brand";
+import Category from "./components/Categories/Category";
+import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
 
 const reactQuearyConfig = new QueryClient();
 
@@ -84,6 +86,22 @@ const router = createBrowserRouter([
                     </ProtectedRoute>
                 ),
             },
+            {
+                path: "/categories/:id",
+                element: (
+                    <ProtectedRoute>
+                        <Category />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "/shippingAddress",
+                element: (
+                    <ProtectedRoute>
+                        <ShippingAddress />
+                    </ProtectedRoute>
+                ),
+            },
             { path: "*", element: <Notfound /> },
         ],
     },
@@ -91,15 +109,15 @@ const router = createBrowserRouter([
 
 export default function App() {
     return (
-        <QueryClientProvider client={reactQuearyConfig}>
-            <CartContextProvider>
-                <WishlistContext>
-                    <TokenContext>
+        <TokenContext>
+            <QueryClientProvider client={reactQuearyConfig}>
+                <CartContextProvider>
+                    <WishlistContext>
                         <RouterProvider router={router} />
                         <Toaster />
-                    </TokenContext>
-                </WishlistContext>
-            </CartContextProvider>
-        </QueryClientProvider>
+                    </WishlistContext>
+                </CartContextProvider>
+            </QueryClientProvider>
+        </TokenContext>
     );
 }

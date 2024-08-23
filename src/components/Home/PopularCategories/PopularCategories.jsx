@@ -22,6 +22,38 @@ export default function PopularCategories() {
         infinite: true,
         centerPadding: "60px",
         slidesToShow: 8,
+        responsive: [
+            {
+                breakpoint: 450,
+                settings: {
+                    slidesToShow: 3,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 4,
+                },
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 4,
+                },
+            },
+            {
+                breakpoint: 1280,
+                settings: {
+                    slidesToShow: 5,
+                },
+            },
+            {
+                breakpoint: 1536,
+                settings: {
+                    slidesToShow: 6,
+                },
+            },
+        ],
         swipeToSlide: true,
         afterChange: function (index) {
             console.log(
@@ -37,7 +69,7 @@ export default function PopularCategories() {
                 {data?.data.data.map((category) => {
                     return (
                         <div className="cursor-pointer" key={category._id}>
-                            <div className="h-72 flex">
+                            <div className="h-44 md:h-72 flex">
                                 <img
                                     src={category.image}
                                     className=" w-full h-full object-cover"

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import img from "../../assets/images/blog-img-1.jpeg";
 import { cartContext } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
     const {
@@ -10,6 +10,7 @@ export default function Cart() {
         getCart,
         changeCount,
         removeItem,
+        cartId,
     } = useContext(cartContext);
 
     useEffect(() => {
@@ -27,6 +28,15 @@ export default function Cart() {
                     <h5 className="text-md text-center text-emerald-800 font-extrabold">
                         total cart items = {numOfCartItems}
                     </h5>
+                    <Link
+                        to={"/shippingAddress"}
+                        className="py-2 px-12 w-fit bg-emerald-300 hover:bg-emerald-500 active:bg-emerald-800 hover:text-white duration-150 mx-auto block font-bold my-5 rounded-3xl"
+                    >
+                        Pay
+                    </Link>
+                    <h1>
+                        {cartId}
+                    </h1>
                 </div>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -61,7 +71,7 @@ export default function Cart() {
                                     <td className="p-4">
                                         <img
                                             src={product.product.imageCover}
-                                            className="w-16 md:w-32 max-w-full max-h-full"
+                                            className="w-16 max-w-full"
                                             alt={product.product.name}
                                         />
                                     </td>
@@ -108,7 +118,6 @@ export default function Cart() {
                                                     id="first_product"
                                                     className="bg-gray-50 w-24 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder={product.count}
-                                                    
                                                     onChange={(e) => {
                                                         changeCount(
                                                             product.product._id,

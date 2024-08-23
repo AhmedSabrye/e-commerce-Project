@@ -24,7 +24,7 @@ function SwipeToSlide() {
         },
     };
     return (
-        <div className="flex h-[600px] my-12 overflow-hidden">
+        <div className="flex h-[400px] px-12 mb-10 overflow-hidden">
             <div className="w-2/3 slider-container">
                 <Slider {...settings}>
                     <div className="h-full">
