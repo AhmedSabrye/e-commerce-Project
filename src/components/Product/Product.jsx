@@ -9,12 +9,9 @@ import WishlistContext, {
 } from "../../context/WishlistContext";
 
 export default function Product({ product }) {
-    const {
-        addToWishlist,
-        wishlistArray,
-        removeFromWishlist,
-        modifyWishlistItem,
-    } = useContext(wishlistContextObject);
+    const { wishlistArray, modifyWishlistItem } = useContext(
+        wishlistContextObject
+    );
 
     const { addProduct } = useContext(cartContext);
     return (
@@ -43,7 +40,8 @@ export default function Product({ product }) {
                         </h5>
                     </div>
                     {/* {["",""].} */}
-                    <Heart className={`absolute top-0 w-8 right-0`}
+                    <Heart
+                        className={`absolute top-0 w-8 right-0`}
                         isActive={wishlistArray.includes(product._id)}
                         onClick={() => modifyWishlistItem(product._id)}
                     />

@@ -17,7 +17,7 @@ import { Toaster } from "react-hot-toast";
 import WishlistContext from "./context/WishlistContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const reactQuearyConfig = new QueryClient()
+const reactQuearyConfig = new QueryClient();
 
 const router = createBrowserRouter([
     {

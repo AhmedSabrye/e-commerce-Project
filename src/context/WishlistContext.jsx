@@ -1,62 +1,49 @@
 import axios from "axios";
 import { createContext, useState } from "react";
+import React from "react";
 
-export const wishlistContextObject = createContext(WishlistContext);
+export const wishlistContextObject = createContext();
 
 export default function WishlistContext({ children }) {
     const [wishlistArray, setWishlistArray] = useState([]);
 
-    function addToWishlist(productId) {
-        console.log("in add");
+    function addToWishlist(id) {
         axios
             .post(
-                "https://ecommerce.routemisr.com/api/v1/wishlist",
+                `https://ecommerce.routemisr.com/api/v1/wishlist`,
                 {
-                    productId: productId,
+                    productId: id,
                 },
-                {
-                    headers: { token: localStorage.getItem("token") },
-                }
-            )
-            .then((res) => setWishlistArray(res.data.data));
-    }
-    function removeFromWishlist(productId) {
-        console.log("in remove");
-        axios
-            .delete(
-                `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,
                 {
                     headers: { token: localStorage.getItem("token") },
                 }
             )
             .then((res) => {
                 setWishlistArray(res.data.data);
-                console.log("in remove then");
+            });
+    }
+    function removeFromWishlist(id) {
+        axios
+            .delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${id}`, {
+                headers: { token: localStorage.getItem("token") },
+            })
+            .then((res) => {
+                setWishlistArray(res.data.data);
             });
     }
 
-    function isInWishlist(id) {
-        return wishlistArray.includes(id);
-    }
-
     function modifyWishlistItem(id) {
-        if (!isInWishlist(id)) {
-            addToWishlist(id);
-            return;
-        } else {
-            removeFromWishlist(id);
+        if (wishlistArray.includes(id)) {
+            return removeFromWishlist(id);
+        }
+        if (!wishlistArray.includes(id)) {
+            return addToWishlist(id);
         }
     }
+
     return (
         <wishlistContextObject.Provider
-            value={{
-                setWishlistArray,
-                wishlistArray,
-                addToWishlist,
-                removeFromWishlist,
-                modifyWishlistItem,
-
-            }}
+            value={{ modifyWishlistItem, wishlistArray }}
         >
             {children}
         </wishlistContextObject.Provider>
