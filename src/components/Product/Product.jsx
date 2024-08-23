@@ -15,7 +15,7 @@ export default function Product({ product }) {
 
     const { addProduct } = useContext(cartContext);
     return (
-        <Link to={``}>
+        <Link to={`/product/${product._id}`}>
             <div className=" transition-colors duration-150 group relative">
                 <div className="z-1 relative">
                     <img

@@ -16,6 +16,8 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import WishlistContext from "./context/WishlistContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProductDetails from './components/ProductDetails/ProductDetails';
+import Brand from './components/Brand/Brand';
 
 const reactQuearyConfig = new QueryClient();
 
@@ -63,6 +65,22 @@ const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <Categories />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "Product/:id",
+                element: (
+                    <ProtectedRoute>
+                        <ProductDetails />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "/brand/:id",
+                element: (
+                    <ProtectedRoute>
+                        <Brand />
                     </ProtectedRoute>
                 ),
             },

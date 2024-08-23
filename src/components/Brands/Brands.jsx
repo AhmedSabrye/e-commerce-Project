@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { Triangle } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 
 export default function Brands() {
     function getAllBrands() {
@@ -16,17 +17,16 @@ export default function Brands() {
     if (isLoading) {
         return (
             <div className="h-screen flex justify-center items-center">
-
-            <Triangle
-                visible={true}
-                height="120"
-                width="120"
-                color="#4fa94d"
-                ariaLabel="triangle-loading"
-                wrapperStyle={{}}
-                wrapperClass=""
+                <Triangle
+                    visible={true}
+                    height="120"
+                    width="120"
+                    color="#4fa94d"
+                    ariaLabel="triangle-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
                 />
-                </div>
+            </div>
         );
     }
     if (isError) {
@@ -38,7 +38,8 @@ export default function Brands() {
             <div className=" container mx-auto  p-5 my-5 grid grid-cols-5 gap-5">
                 {data.data.data.map((brand) => {
                     return (
-                        <div
+                        <Link
+                            to={`/brand/${brand._id}`}
                             key={brand._id}
                             className="bg-emerald-500 rounded-2xl p-3"
                         >
@@ -47,8 +48,9 @@ export default function Brands() {
                                 alt={brand.name}
                                 className="w-full"
                             />
+                            {brand._id}
                             <h3>{brand.name}</h3>
-                        </div>
+                        </Link>
                     );
                 })}
             </div>
