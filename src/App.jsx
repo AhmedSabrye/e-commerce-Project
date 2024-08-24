@@ -20,6 +20,7 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Brand from "./components/Brand/Brand";
 import Category from "./components/Categories/Category";
 import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
+import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 
 const reactQuearyConfig = new QueryClient();
 
@@ -100,6 +101,12 @@ const router = createBrowserRouter([
                     <ProtectedRoute>
                         <ShippingAddress />
                     </ProtectedRoute>
+                ),
+            },
+            {
+                path: "/forgetpassword",
+                element: (
+                        <ForgetPassword />
                 ),
             },
             { path: "*", element: <Notfound /> },

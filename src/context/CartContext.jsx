@@ -30,7 +30,11 @@ export default function CartContextProvider({ children }) {
                 console.log(allProducts, totalCartPrice, numOfCartItems);
             })
             .catch((err) => {
-                console.log("error", err);
+                if (err.response.data.statusMsg == "fail") {
+                    toast("Cart is empty", {
+                        position: "top-right",
+                    });
+                }
             });
     }
     // const notify = () => toast("Here is your toast.");
