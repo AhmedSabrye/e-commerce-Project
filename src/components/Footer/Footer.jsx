@@ -107,7 +107,8 @@ export default function Footer() {
                         {/* social - end */}
                     </div>
                     <div className="py-8 text-center text-sm text-gray-400">
-                        © 2021 - Present Flowrift. All rights reserved.
+                        © 2024 - Present Route Frontend Diploma.
+                        <h2 className=" mt-5font-bold text-xl text-emerald-400">C43</h2>
                     </div>
                 </footer>
             </div>

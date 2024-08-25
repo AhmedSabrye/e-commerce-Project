@@ -24,13 +24,13 @@ function SwipeToSlide() {
         },
     };
     return (
-        <div className="flex h-[400px] px-12 mb-10 overflow-hidden">
-            <div className="w-2/3 slider-container">
+        <div className="flex h-[50vh] justify-center px-12 mb-10 overflow-hidden">
+            <div className="w-3/5 slider-container">
                 <Slider {...settings}>
                     <div className="h-full">
                         <img
                             src={img1}
-                            className="h-full object-cover w-full"
+                            className="h-full object-cover object-bottom w-full"
                             alt=""
                         />
                     </div>
@@ -50,12 +50,20 @@ function SwipeToSlide() {
                     </div>
                 </Slider>
             </div>
-            <div className="w-1/3">
+            <div className="w-2/5">
                 <div className="h-1/2  img-container">
-                    <img src={img4} className="h-full object-cover" alt="" />
+                    <img
+                        src={img4}
+                        className="h-full w-full object-cover"
+                        alt=""
+                    />
                 </div>
                 <div className="h-1/2 img-container">
-                    <img src={img5} className="h-full object-cover" alt="" />
+                    <img
+                        src={img5}
+                        className="h-full w-full object-cover"
+                        alt=""
+                    />
                 </div>
             </div>
         </div>

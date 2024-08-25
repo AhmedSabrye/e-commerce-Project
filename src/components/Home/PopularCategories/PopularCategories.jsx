@@ -82,7 +82,6 @@ export default function PopularCategories() {
                         </div>
                     );
                 })}
-                {console.log(data?.data)}
             </Slider>
         </div>
     );

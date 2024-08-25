@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as yup from "yup";
 import { useFormik } from "formik";
 import { useContext, useState } from "react";
 import { cartContext } from "../../context/CartContext";
@@ -83,6 +84,21 @@ export default function ShippingAddress() {
         onSubmit: (values) => {
             managePaymentFunctions(values);
         },
+
+        validationSchema: yup.object().shape({
+            details: yup
+                .string()
+                .min(2, "at least two characters")
+                .required("details is required"),
+            phone: yup
+                .string()
+                .required("phone is required")
+                .matches(/^01[0125]\d{8}$/,"kindly Enter a Valid Egyptian Number"),
+            city: yup
+                .string()
+                .required("city is required")
+                .min(2, "min 2 characters"),
+        }),
     });
 
     return (
@@ -109,7 +125,47 @@ export default function ShippingAddress() {
                         Details
                     </label>
                 </div>
-
+                {shippingAddressForm.errors.details &&
+                shippingAddressForm.touched.details ? (
+                    <section className=" items-center w-full  px-2 py-5">
+                        <div className="w-full text-red-600 border rounded-lg shadow-xl">
+                            <div className="flex items-center justify-between px-6 py-4 mx-auto">
+                                <div className="flex">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className=" mr-4 icon icon-tabler icon-tabler-alert-triangle"
+                                        width=""
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path
+                                            stroke="none"
+                                            d="M0 0h24v24H0z"
+                                            fill="none"
+                                        ></path>
+                                        <circle cx="12" cy="12" r="9"></circle>
+                                        <line
+                                            x1="12"
+                                            y1="8"
+                                            x2="12.01"
+                                            y2="8"
+                                        ></line>
+                                        <polyline points="11 12 12 12 12 16 13 16"></polyline>
+                                    </svg>
+                                    <p className="text-sm font-semibold tracking-wide uppercase">
+                                        <strong>Error:</strong>{" "}
+                                        {shippingAddressForm.errors.details}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                ) : null}
                 <div className="relative z-0 w-full mb-3 mt-3 group">
                     <input
                         type="tel"
@@ -128,6 +184,47 @@ export default function ShippingAddress() {
                         Phone
                     </label>
                 </div>
+                {shippingAddressForm.errors.phone &&
+                shippingAddressForm.touched.phone ? (
+                    <section className=" items-center w-full  px-2 py-5">
+                        <div className="w-full text-red-600 border rounded-lg shadow-xl">
+                            <div className="flex items-center justify-between px-6 py-4 mx-auto">
+                                <div className="flex">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className=" mr-4 icon icon-tabler icon-tabler-alert-triangle"
+                                        width=""
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path
+                                            stroke="none"
+                                            d="M0 0h24v24H0z"
+                                            fill="none"
+                                        ></path>
+                                        <circle cx="12" cy="12" r="9"></circle>
+                                        <line
+                                            x1="12"
+                                            y1="8"
+                                            x2="12.01"
+                                            y2="8"
+                                        ></line>
+                                        <polyline points="11 12 12 12 12 16 13 16"></polyline>
+                                    </svg>
+                                    <p className="text-sm font-semibold tracking-wide uppercase">
+                                        <strong>Error:</strong>{" "}
+                                        {shippingAddressForm.errors.phone}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                ) : null}
                 <div className="relative z-0 w-full mb-3 mt-3 group">
                     <input
                         type="text"
@@ -146,7 +243,47 @@ export default function ShippingAddress() {
                         City
                     </label>
                 </div>
-
+                {shippingAddressForm.errors.city &&
+                shippingAddressForm.touched.city ? (
+                    <section className=" items-center w-full  px-2 py-5">
+                        <div className="w-full text-red-600 border rounded-lg shadow-xl">
+                            <div className="flex items-center justify-between px-6 py-4 mx-auto">
+                                <div className="flex">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className=" mr-4 icon icon-tabler icon-tabler-alert-triangle"
+                                        width=""
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path
+                                            stroke="none"
+                                            d="M0 0h24v24H0z"
+                                            fill="none"
+                                        ></path>
+                                        <circle cx="12" cy="12" r="9"></circle>
+                                        <line
+                                            x1="12"
+                                            y1="8"
+                                            x2="12.01"
+                                            y2="8"
+                                        ></line>
+                                        <polyline points="11 12 12 12 12 16 13 16"></polyline>
+                                    </svg>
+                                    <p className="text-sm font-semibold tracking-wide uppercase">
+                                        <strong>Error:</strong>{" "}
+                                        {shippingAddressForm.errors.city}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                ) : null}
                 <div className="flex justify-evenly">
                     <button
                         type="submit"

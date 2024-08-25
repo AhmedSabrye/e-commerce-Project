@@ -57,11 +57,9 @@ export default function Product({ product }) {
             </Link>
                             <Heart
                                 className={`absolute top-0 w-8 right-0`}
-                                isActive={wishlistArray.includes(product._id)}
+                                isActive={wishlistArray.some((obj) => obj._id == product._id)}
                                 onClick={(e) => {
                                     modifyWishlistItem(product._id);
-                                    e.stopPropagation();
-                                    e.preventDefault();
                                 }}
                             />
         </div>

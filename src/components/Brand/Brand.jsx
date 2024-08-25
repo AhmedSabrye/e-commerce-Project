@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { Triangle } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 
 export default function Brand() {
@@ -13,11 +14,40 @@ export default function Brand() {
         queryKey: ["specificBrand"],
         queryFn: getSpecificBrand,
     });
+
+    if (isError) {
+        return (
+            <>
+                <div className="h-screen flex justify-center items-center">
+                    <h1>{error}</h1>
+                </div>
+            </>
+        );
+    }
+
     return (
-        <div className="flex justify-center items-center ">
-            <div className="w-1/3">
-                <img src={data.data.data.image} className="w-full" alt="" />
-            </div>
+        <div>
+            {!isLoading ? (
+                <div className="flex justify-center items-center ">
+                    <div className="w-1/3">
+                        <img
+                            src={data.data.data.image}
+                            className="w-full"
+                            alt=""
+                        />
+                    </div>
+                </div>
+            ) : (
+                <Triangle
+                    visible={true}
+                    height="80"
+                    width="80"
+                    color="#4fa94d"
+                    ariaLabel="triangle-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                />
+            )}
         </div>
     );
 }

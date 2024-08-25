@@ -21,6 +21,9 @@ import Brand from "./components/Brand/Brand";
 import Category from "./components/Categories/Category";
 import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
+import ForgetPasswordResetCode from "./components/ForgetPasswordResetCode/ForgetPasswordResetCode";
+import AllOrders from "./components/AllOrders/AllOrders";
+import Wishlist from "./components/WishlistComponent/WishlistComponent";
 
 const reactQuearyConfig = new QueryClient();
 
@@ -104,10 +107,16 @@ const router = createBrowserRouter([
                 ),
             },
             {
+                path: "/forgetpasswordcode",
+                element: <ForgetPasswordResetCode />,
+            },
+            {
                 path: "/forgetpassword",
-                element: (
-                        <ForgetPassword />
-                ),
+                element: <ForgetPassword />,
+            },
+            {
+                path: "/wishlist",
+                element: <Wishlist />,
             },
             { path: "*", element: <Notfound /> },
         ],

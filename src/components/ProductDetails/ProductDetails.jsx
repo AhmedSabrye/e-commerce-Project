@@ -15,7 +15,7 @@ export default function ProductDetails() {
     const newData = data?.data.data;
     const [imageCover, setImageCover] = useState(newData?.imageCover);
     const { addProduct } = useContext(cartContext);
-    const { modifyWishlistItem, wishlistArray } = useContext(
+    const { modifyWishlistItem, wishlistArrayId } = useContext(
         wishlistContextObject
     );
 
@@ -81,7 +81,7 @@ export default function ProductDetails() {
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-6 w-6"
                                 fill={`${
-                                    wishlistArray.includes(newData.id)
+                                    wishlistArrayId.includes(newData.id)
                                         ? "red"
                                         : "white"
                                 }`}
@@ -127,30 +127,7 @@ export default function ProductDetails() {
                             </svg>
                         </div>
                     </div>
-                    {/* rating - end */}
-                    {/* color - start */}
-                    {/* <div className="mb-4 md:mb-6">
-                        <span className="mb-3 inline-block text-sm font-semibold text-gray-500 md:text-base">
-                            Color
-                        </span>
-                        <div className="flex flex-wrap gap-2">
-                            <span className="h-8 w-8 rounded-full border bg-gray-800 ring-2 ring-gray-800 ring-offset-1 transition duration-100" />
-                            <button
-                                type="button"
-                                className="h-8 w-8 rounded-full border bg-gray-500 ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-200"
-                            />
-                            <button
-                                type="button"
-                                className="h-8 w-8 rounded-full border bg-gray-200 ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-200"
-                            />
-                            <button
-                                type="button"
-                                className="h-8 w-8 rounded-full border bg-white ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-200"
-                            />
-                        </div>
-                    </div> */}
-                    {/* color - end */}
-                    {/* price - start */}
+
                     <div className="mb-4">
                         <div className="flex items-end gap-2">
                             <span className="text-xl font-bold text-gray-800 md:text-2xl">

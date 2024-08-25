@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { tokenContext } from "../../context/TokenContext";
 import { useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 export default function Register() {
     const {userToken , setUserToken} = useContext(tokenContext)
@@ -25,6 +26,8 @@ export default function Register() {
                 setUserToken(res.data.token);
                 console.log("state",userToken)
                 fetchMessageHandling(res.data.message);
+                Navigate("/")
+
             })
             .catch((err) => {
                 console.log(err?.response?.data)

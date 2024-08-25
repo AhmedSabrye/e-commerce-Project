@@ -24,40 +24,43 @@ export default function Navbar() {
                             <NavLink to={""}>Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"Cart"}>Cart</NavLink>
+                            <NavLink to={"/Cart"}>Cart</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"Products"}>Products</NavLink>
+                            <NavLink to={"/Products"}>Products</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"Categories"}>Categories</NavLink>
+                            <NavLink to={"/Categories"}>Categories</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"Brands"}>Brands</NavLink>
+                            <NavLink to={"/Brands"}>Brands</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/wishlist"}>Wishlist</NavLink>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div className="flex space-x-3">
+            <div className="flex space-x-6">
                 <div>
                     <ul className="flex space-x-3 ">
                         <li>
-                            <i className="fa-brands fa-instagram"></i>
+                            <i className="fa-brands cursor-pointer text-lg hover:text-orange-400 duration-150 fa-instagram"></i>
                         </li>
                         <li>
-                            <i className="fa-brands fa-facebook"></i>
+                            <i className="fa-brands cursor-pointer text-lg hover:text-sky-600 duration-150 fa-facebook"></i>
                         </li>
                         <li>
-                            <i className="fa-brands fa-tiktok"></i>
+                            <i className="fa-brands cursor-pointer text-lg hover:text-red-600 duration-150 fa-tiktok"></i>
                         </li>
                         <li>
-                            <i className="fa-brands fa-twitter"></i>
+                            <i className="fa-brands cursor-pointer text-lg hover:text-sky-400 duration-150 fa-twitter"></i>
                         </li>
                         <li>
-                            <i className="fa-brands fa-linkedin"></i>
+                            <i className="fa-brands cursor-pointer text-lg hover:text-blue-800 duration-150 fa-linkedin"></i>
                         </li>
                         <li>
-                            <i className="fa-brands fa-youtube"></i>
+                            <i className="fa-brands cursor-pointer text-lg hover:text-red-600 duration-150 fa-youtube"></i>
                         </li>
                     </ul>
                 </div>

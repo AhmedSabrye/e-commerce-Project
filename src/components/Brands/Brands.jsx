@@ -9,7 +9,7 @@ export default function Brands() {
         return axios.get("https://ecommerce.routemisr.com/api/v1/brands");
     }
 
-    const { isLoading, isError, data } = useQuery({
+    const { isLoading, isError, data,error } = useQuery({
         queryKey: ["allBrands"],
         queryFn: getAllBrands,
     });
@@ -29,8 +29,15 @@ export default function Brands() {
             </div>
         );
     }
+
     if (isError) {
-        return <h1>Error</h1>;
+        return (
+            <>
+                <div className="h-screen flex justify-center items-center">
+                    <h1>{error}</h1>
+                </div>
+            </>
+        );
     }
 
     return (
@@ -48,7 +55,9 @@ export default function Brands() {
                                 alt={brand.name}
                                 className="w-full"
                             />
-                            <h3 className="text-center my-3 font-extrabold">{brand.name}</h3>
+                            <h3 className="text-center my-3 font-extrabold">
+                                {brand.name}
+                            </h3>
                         </Link>
                     );
                 })}
