@@ -33,11 +33,9 @@ export default function ShippingAddress() {
                 });
             })
             .catch((err) => {
-                if (err.response.data.message == "invalid ID null") {
-                    toast.error("Cart is empty", {
-                        position: "top-right",
-                    });
-                }
+                toast.error("Cart is empty", {
+                    position: "top-right",
+                });
             });
     }
 
@@ -93,7 +91,10 @@ export default function ShippingAddress() {
             phone: yup
                 .string()
                 .required("phone is required")
-                .matches(/^01[0125]\d{8}$/,"kindly Enter a Valid Egyptian Number"),
+                .matches(
+                    /^01[0125]\d{8}$/,
+                    "kindly Enter a Valid Egyptian Number"
+                ),
             city: yup
                 .string()
                 .required("city is required")

@@ -35,13 +35,13 @@ export default function Categories() {
 
     return (
         <>
-            <div className=" container mx-auto  p-5 my-5 grid grid-cols-6 gap-5">
+            <div className=" container mx-auto  p-5 my-5 grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5">
                 {data.data.data.map((categories) => {
                     return (
                         <Link
                             to={`/Categories/${categories._id}`}
                             key={categories._id}
-                            className="ring ring-emerald-600 rounded-2xl p-3 hover:scale-125 bg-white duration-300 shadow-xl"
+                            className="ring-1 ring-emerald-600 overflow-hidden rounded-2xl hover:scale-125 bg-white duration-300 shadow-xl"
                         >
                             <img
                                 src={categories.image}

@@ -14,6 +14,9 @@ function SwipeToSlide() {
         centerPadding: "60px",
         slidesToShow: 1,
         arrows: false,
+        autoplay: true,
+        slidesToScroll: 1,
+        autoplaySpeed: 3000,
         swipeToSlide: true,
         afterChange: function (index) {
             console.log(

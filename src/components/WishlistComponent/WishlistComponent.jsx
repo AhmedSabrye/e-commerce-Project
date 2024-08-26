@@ -10,6 +10,7 @@ import { Triangle } from "react-loader-spinner";
 export default function Wishlist() {
     const { wishlistArray, wishlistArrayId, modifyWishlistItem, getWishlist } =
         useContext(wishlistContextObject);
+    const { addProduct } = useContext(cartContext);
 
     return (
         <div>
@@ -35,6 +36,12 @@ export default function Wishlist() {
                                     className="px-6 py-3"
                                 >
                                     Price/Unit
+                                </th>
+                                <th
+                                    scope="col text-center"
+                                    className="px-6 py-3"
+                                >
+                                    Cart
                                 </th>
                                 <th
                                     scope="col text-center"
@@ -67,6 +74,17 @@ export default function Wishlist() {
                                         <td className=" px-6 py-4 font-semibold text-gray-900 dark:text-white">
                                             {product?.price} EGP
                                         </td>
+                                        <td className=" px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                            <button
+                                                onClick={(e) => {
+                                                    addProduct(product._id);
+                                                    e.preventDefault();
+                                                }}
+                                                className="bg-emerald-400 px-8 py-2 text-white w-fit hover:text-white rounded-3xl hover:bg-emerald-600 text-sm"
+                                            >
+                                                Add to Cart
+                                            </button>
+                                        </td>
                                         <td className="px-6 py-4 flex justify-center relative">
                                             <Heart
                                                 className={`size-16`}
@@ -89,10 +107,7 @@ export default function Wishlist() {
                 </div>
             ) : (
                 <div className="min-h-96 flex justify-center items-center">
-                    
-                    <h1>
-                        your Wish List is empty
-                    </h1>
+                    <h1>your Wish List is empty</h1>
                 </div>
             )}
         </div>

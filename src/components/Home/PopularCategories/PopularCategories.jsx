@@ -22,6 +22,9 @@ export default function PopularCategories() {
         infinite: true,
         centerPadding: "60px",
         slidesToShow: 8,
+        autoplay:true,
+        slidesToScroll:2,
+        autoplaySpeed:3000,
         responsive: [
             {
                 breakpoint: 450,

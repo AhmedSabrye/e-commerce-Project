@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import React from "react";
+import toast from "react-hot-toast";
 
 export const wishlistContextObject = createContext();
 
@@ -11,6 +12,9 @@ export default function WishlistContext({ children }) {
         getWishlist();
     }, []);
     function addToWishlist(id) {
+        const addingToast = toast.loading("adding to favourite", {
+            position: "top-right",
+        });
         axios
             .post(
                 `https://ecommerce.routemisr.com/api/v1/wishlist`,
@@ -24,9 +28,16 @@ export default function WishlistContext({ children }) {
             .then((res) => {
                 setWishlistArrayId(res.data.data);
                 getWishlist();
+                toast.success("added to favourite", {
+                    id: addingToast,
+                    position: "top-right",
+                });
             });
     }
     function removeFromWishlist(id) {
+        const deletingToast = toast.loading("removing from favourite", {
+            position: "top-right",
+        });
         axios
             .delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${id}`, {
                 headers: { token: localStorage.getItem("token") },
@@ -34,6 +45,10 @@ export default function WishlistContext({ children }) {
             .then((res) => {
                 setWishlistArrayId(res.data.data);
                 getWishlist();
+                toast.success("removed from favourite", {
+                    id: deletingToast,
+                    position: "top-right",
+                });
             });
     }
 

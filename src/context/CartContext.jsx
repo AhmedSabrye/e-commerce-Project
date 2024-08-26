@@ -83,6 +83,26 @@ export default function CartContextProvider({ children }) {
             });
     }
 
+    function clearCart() {
+        console.log("we are here but still out")
+        axios
+            .delete(`https://ecommerce.routemisr.com/api/v1/cart`, {
+                headers: {
+                    token: localStorage.getItem("token"),
+                },
+            })
+            .then(() => {
+                setNumOfCartItems(0);
+                setAllProducts(null);
+                setTotalCartPrice(0);
+                toast.success("Cart Cleared Successfully", {
+                    position: "bottom-right",
+                });
+                getCart();
+                console.log("we are here")
+            });
+    }
+
     function removeItem(productId) {
         axios
             .delete(
@@ -97,7 +117,7 @@ export default function CartContextProvider({ children }) {
                 setNumOfCartItems(res.data.numOfCartItems);
                 setAllProducts(res.data.data.products);
                 setTotalCartPrice(res.data.data.totalCartPrice);
-                toast.success("itme Deleted Successfully", {
+                toast.success("item Deleted Successfully", {
                     position: "bottom-right",
                 });
             });
@@ -116,6 +136,7 @@ export default function CartContextProvider({ children }) {
                 changeCount,
                 removeItem,
                 cartId,
+                clearCart,
             }}
         >
             {children}

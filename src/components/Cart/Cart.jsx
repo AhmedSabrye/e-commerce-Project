@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { cartContext } from "../../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Cart() {
     const {
@@ -11,7 +11,9 @@ export default function Cart() {
         changeCount,
         removeItem,
         cartId,
+        clearCart,
     } = useContext(cartContext);
+    const navigate = useNavigate()
 
     useEffect(() => {
         getCart();
@@ -21,19 +23,23 @@ export default function Cart() {
     return (
         <div>
             <div className="relative overflow-x-auto max-w-screen-xl mx-auto my-6 shadow-md sm:rounded-lg">
-                <div className="my-8">
-                    <h2 className="text-xl my-2 text-center text-emerald-800 font-extrabold">
-                        total price = {totalCartPrice}
-                    </h2>
-                    <h5 className="text-md text-center text-emerald-800 font-extrabold">
-                        total cart items = {numOfCartItems}
-                    </h5>
-                    <Link
-                        to={"/shippingAddress"}
-                        className="py-2 px-12 w-fit bg-emerald-300 hover:bg-emerald-500 active:bg-emerald-800 hover:text-white duration-150 mx-auto block font-bold my-5 rounded-3xl"
-                    >
-                        Pay
-                    </Link>
+                <div className="my-8 flex justify-between items-center px-8">
+                    <div className="">
+                        <h2 className="text-xl my-2 text-center text-emerald-800 font-extrabold">
+                            Total price = {totalCartPrice}
+                        </h2>
+                        <h5 className="text-sm text-center text-emerald-800 font-extrabold">
+                            Total cart items = {numOfCartItems}
+                        </h5>
+                    </div>
+                    <div className="">
+                        <Link
+                            to={"/shippingAddress"}
+                            className="py-2 px-12 w-fit bg-emerald-300 hover:bg-emerald-500 active:bg-emerald-800 hover:text-white duration-150 mx-auto block font-bold my-5 rounded-3xl"
+                        >
+                            Pay
+                        </Link>
+                    </div>
                 </div>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -180,6 +186,15 @@ export default function Cart() {
                     </tbody>
                 </table>
             </div>
+            <button
+                onClick={() => {
+                    clearCart();
+                    navigate("/")       
+                }}
+                className=" w-fit px-8 py-2 rounded-3xl bg-emerald-500 hover:bg-emerald-700 active:bg-emerald-900 text-black hover:text-white font-bold mx-auto block"
+            >
+                Clear Cart
+            </button>
         </div>
     );
 }

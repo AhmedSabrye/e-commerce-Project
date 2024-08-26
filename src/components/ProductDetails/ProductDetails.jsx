@@ -15,7 +15,7 @@ export default function ProductDetails() {
     const newData = data?.data.data;
     const [imageCover, setImageCover] = useState(newData?.imageCover);
     const { addProduct } = useContext(cartContext);
-    const { modifyWishlistItem, wishlistArrayId } = useContext(
+    const { modifyWishlistItem, wishlistArray } = useContext(
         wishlistContextObject
     );
 
@@ -33,15 +33,17 @@ export default function ProductDetails() {
     }
     if (isLoading)
         return (
-            <Triangle
-                visible={true}
-                height="80"
-                width="80"
-                color="#4fa94d"
-                ariaLabel="triangle-loading"
-                wrapperStyle={{}}
-                wrapperClass=""
-            />
+            <div className="h-screen flex justify-center items-center">
+                <Triangle
+                    visible={true}
+                    height="80"
+                    width="80"
+                    color="#4fa94d"
+                    ariaLabel="triangle-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                />
+            </div>
         );
 
     return (
@@ -81,7 +83,9 @@ export default function ProductDetails() {
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-6 w-6"
                                 fill={`${
-                                    wishlistArrayId.includes(newData.id)
+                                    wishlistArray.some(
+                                        (obj) => obj._id == newData._id
+                                    )
                                         ? "red"
                                         : "white"
                                 }`}
