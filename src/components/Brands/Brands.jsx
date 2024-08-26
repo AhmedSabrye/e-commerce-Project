@@ -9,7 +9,7 @@ export default function Brands() {
         return axios.get("https://ecommerce.routemisr.com/api/v1/brands");
     }
 
-    const { isLoading, isError, data,error } = useQuery({
+    const { isLoading, isError, data, error } = useQuery({
         queryKey: ["allBrands"],
         queryFn: getAllBrands,
     });
@@ -48,7 +48,7 @@ export default function Brands() {
                         <Link
                             to={`/brand/${brand._id}`}
                             key={brand._id}
-                            className="ring ring-emerald-600 rounded-2xl p-3 hover:scale-125 bg-white duration-300 shadow-xl"
+                            className="ring-1 ring-emerald-600 rounded-2xl p-3 hover:scale-110 bg-white duration-300 shadow-md hover:shadow-xl"
                         >
                             <img
                                 src={brand.image}

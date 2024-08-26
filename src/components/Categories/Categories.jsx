@@ -41,7 +41,7 @@ export default function Categories() {
                         <Link
                             to={`/Categories/${categories._id}`}
                             key={categories._id}
-                            className="ring-1 ring-emerald-600 overflow-hidden rounded-2xl hover:scale-125 bg-white duration-300 shadow-xl"
+                            className="ring-1 ring-emerald-600 overflow-hidden rounded-2xl hover:scale-110 bg-white duration-300 shadow-md hover:shadow-xl"
                         >
                             <img
                                 src={categories.image}
