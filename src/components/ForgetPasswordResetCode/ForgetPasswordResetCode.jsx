@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 
 export default function ForgetPasswordResetCode() {
     function forgetPassword(values) {
-        console.log(values);
         axios
             .post(
                 "https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode",
@@ -24,12 +23,12 @@ export default function ForgetPasswordResetCode() {
 
         onSubmit: (values) => {
             forgetPassword(values);
-            console.log(values);
         },
     });
     return (
         <div>
-            <div>
+            <div className=" ring-2 ring-emerald-500 w-1/3  p-20 mx-auto my-20 rounded-2xl">
+                <h1 className="text-center capitalize ">Check your mail for Reset Code</h1>
                 <form
                     onSubmit={forgetPasswordForm.handleSubmit}
                     className="max-w-md mx-auto"

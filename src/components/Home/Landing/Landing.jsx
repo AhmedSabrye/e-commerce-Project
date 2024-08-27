@@ -19,15 +19,10 @@ function SwipeToSlide() {
         autoplaySpeed: 3000,
         swipeToSlide: true,
         afterChange: function (index) {
-            console.log(
-                `Slider Changed to: ${
-                    index + 1
-                }, background: #222; color: #bada55`
-            );
         },
     };
     return (
-        <div className="flex h-[50vh] justify-center px-12 mb-10 overflow-hidden">
+        <div className="flex h-[50vh] justify-center px-12 mb-10 overflow-hidden ">
             <div className="w-3/5 slider-container">
                 <Slider {...settings}>
                     <div className="h-full">
@@ -53,7 +48,7 @@ function SwipeToSlide() {
                     </div>
                 </Slider>
             </div>
-            <div className="w-2/5">
+            <div className="w-2/5 h-full">
                 <div className="h-1/2  img-container">
                     <img
                         src={img4}

@@ -19,18 +19,14 @@ export default function Register() {
         axios
             .post("https://ecommerce.routemisr.com/api/v1/auth/signup", values)
             .then((res) => {
-                console.log(res.data);
-                console.log("token", res.data.token);
                 localStorage.setItem("token", res.data.token);
                 // setToken(res.data.token);
                 setUserToken(res.data.token);
-                console.log("state",userToken)
                 fetchMessageHandling(res.data.message);
                 Navigate("/")
 
             })
             .catch((err) => {
-                console.log(err?.response?.data)
                 fetchMessageHandling(err?.response?.data.message);
             });
     }
@@ -69,7 +65,7 @@ export default function Register() {
                 .required("this field is required"),
             phone: yup
                 .string()
-                .matches(/(01)[0125][0-9]{8}/, "this number is not valid "),
+                .matches(/(01)[0125][0-9]{8}/, "this number is not valid ").required(),
         }),
     });
 

@@ -1,33 +1,32 @@
+import * as yup from "yup";
+
 import axios from "axios";
 import { useFormik } from "formik";
 import { useContext, useState } from "react";
 import { tokenContext } from "../../context/TokenContext";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function Signin() {
     const [signinMessage, setSetSigninMessage] = useState("");
-    const {userToken , setUserToken} = useContext(tokenContext)
-    const navigate = useNavigate()
+    const { userToken, setUserToken } = useContext(tokenContext);
+    const navigate = useNavigate();
     function fetchMessageHandling(err) {
-        setSetSigninMessage(err);
-        setTimeout(() => {
-            setSetSigninMessage("");
-        }, 2500);
+        console.log(err);
+        toast.error(err, {
+            position: "top-right",
+        });
     }
 
     async function signin(values) {
-
         axios
             .post("https://ecommerce.routemisr.com/api/v1/auth/signin", values)
             .then((res) => {
-                console.log(res.data);
-                console.log("token", res.data.token);
                 localStorage.setItem("token", res.data.token);
                 setUserToken(res.data.token);
-                navigate("/")
+                navigate("/");
             })
             .catch((err) => {
-                console.log(err.response.data);
                 fetchMessageHandling(err.response.data.message);
             });
     }
@@ -40,8 +39,18 @@ export default function Signin() {
 
         onSubmit: (values) => {
             signin(values);
-            console.log(values);
         },
+        validationSchema: yup.object().shape({
+            email: yup
+                .string()
+                .email("this email is not valid")
+                .required("Email is required"),
+            password: yup
+                .string()
+                .required("password is required")
+                .min(5, "min 5 characters")
+                .max(9, "max 9 characters"),
+        }),
     });
 
     return (
@@ -68,7 +77,30 @@ export default function Signin() {
                         Email address
                     </label>
                 </div>
-
+                {signinForm.errors.email && signinForm.touched.email != "" ? (
+                    <div
+                        className={`flex items-center p-4 mb-4 text-sm  border border-red-300 rounded-lg  dark:bg-gray-800 
+                                text-red-800 bg-red-50 dark:text-red-400
+                        dark:border-red-800`}
+                        role="alert"
+                    >
+                        <svg
+                            className="flex-shrink-0 inline w-4 h-4 me-3"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span className="sr-only">Info</span>
+                        <div>
+                            <span className="font-medium">
+                                {signinForm.errors.email}
+                            </span>
+                        </div>
+                    </div>
+                ) : null}
                 <div className="relative z-0 w-full mb-3 mt-3 group">
                     <input
                         type="password"
@@ -87,6 +119,31 @@ export default function Signin() {
                         Password
                     </label>
                 </div>
+                {signinForm.errors.password &&
+                signinForm.touched.password != "" ? (
+                    <div
+                        className={`flex items-center p-4 mb-4 text-sm  border border-red-300 rounded-lg  dark:bg-gray-800 
+                                text-red-800 bg-red-50 dark:text-red-400
+                        dark:border-red-800`}
+                        role="alert"
+                    >
+                        <svg
+                            className="flex-shrink-0 inline w-4 h-4 me-3"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span className="sr-only">Info</span>
+                        <div>
+                            <span className="font-medium">
+                                {signinForm.errors.password}
+                            </span>
+                        </div>
+                    </div>
+                ) : null}
                 {signinMessage != "" ? (
                     <div
                         className={`flex items-center p-4 mb-4 text-sm  border border-red-300 rounded-lg  dark:bg-gray-800 
@@ -109,6 +166,7 @@ export default function Signin() {
                         </div>
                     </div>
                 ) : null}
+
                 <button
                     type="Signin"
                     className="text-white mt-6 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -116,8 +174,11 @@ export default function Signin() {
                     Submit
                 </button>
             </form>
-            <Link to={"/forgetpassword"} className="mx-auto w-fit block underline text-gray-700 hover:text-black hover:underline mt-5">
-            forget Password
+            <Link
+                to={"/forgetpassword"}
+                className="mx-auto w-fit block underline text-gray-700 hover:text-black hover:underline mt-5"
+            >
+                forget Password
             </Link>
         </div>
     );

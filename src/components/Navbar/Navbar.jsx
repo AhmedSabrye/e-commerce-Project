@@ -13,7 +13,7 @@ export default function Navbar() {
         navigate("/signin")
     }
     return (
-        <div className=" flex justify-between lg:max-w-screen-lg md:max-w-screen-md max-w-7xl text-sm container mx-auto py-4">
+        <div className=" flex justify-between lg:max-w-screen-lg md:max-w-screen-md max-w-7xl text-sm container mx-auto py-4 ">
             <div className="flex space-x-5 items-center">
                 <Link to={""} className="img-contaienr">
                     <img src={logo} alt="Fresh Cart" />
@@ -21,22 +21,22 @@ export default function Navbar() {
                 <div>
                     <ul className="flex space-x-3 text-gray-400">
                         <li>
-                            <NavLink to={""}>Home</NavLink>
+                            <NavLink className={"font-bold"} to={""}>Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/Cart"}>Cart</NavLink>
+                            <NavLink className={"font-bold"} to={"/Cart"}>Cart</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/Products"}>Products</NavLink>
+                            <NavLink className={"font-bold"} to={"/Products"}>Products</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/Categories"}>Categories</NavLink>
+                            <NavLink className={"font-bold"} to={"/Categories"}>Categories</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/Brands"}>Brands</NavLink>
+                            <NavLink className={"font-bold"} to={"/Brands"}>Brands</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/wishlist"}>Wishlist</NavLink>
+                            <NavLink className={"font-bold"} to={"/wishlist"}>Wishlist</NavLink>
                         </li>
                     </ul>
                 </div>

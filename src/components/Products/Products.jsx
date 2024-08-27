@@ -7,19 +7,14 @@ import { wishlistContextObject } from "../../context/WishlistContext";
 
 export default function Products() {
     // const [allProducts, setAllProducts] = useState(null);
-    const { modifyWishlistItem } = useContext(wishlistContextObject);
+    const { modifyWishlistItem ,getWishlist} = useContext(wishlistContextObject);
     function getAllProducts() {
         return axios.get("https://ecommerce.routemisr.com/api/v1/products");
-        // .then((res) => {
-        //     setAllProducts(res.data.data);
-        // })
-        // .catch((err) => {
-        //     console.log(err);
-        // });
     }
     useEffect(() => {
-        modifyWishlistItem("6428e479dc1175abc65ca078");
-        modifyWishlistItem("6428e479dc1175abc65ca078");
+        getWishlist()
+        // modifyWishlistItem("6428e479dc1175abc65ca078");
+        // modifyWishlistItem("6428e479dc1175abc65ca078");
     }, []);
 
     const { isError, isLoading, data, error } = useQuery({

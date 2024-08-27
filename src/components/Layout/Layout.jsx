@@ -4,7 +4,7 @@ import Footer from './../Footer/Footer';
 import { Outlet } from "react-router-dom";
 
 export default function Layout() {
-    return <div>
+    return <div className="dark:bg-slate-600">
         
         <Navbar/>
         <div>

@@ -8,7 +8,6 @@ export default function ForgetPassword() {
     const [emailSent, setEmailSent] = useState(false);
     const navigateToCode = useNavigate()
     function forgetPassword(values) {
-        console.log(values);
         axios
             .post(
                 "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
@@ -16,9 +15,9 @@ export default function ForgetPassword() {
             )
             .then((res) => {if (res.data.statusMsg == "success"){
                 navigateToCode("/forgetpasswordcode")
-                toast.success("Check your mail for Reset Code")
+                toast.success("Check your mail for Reset Code",{position:"top-right"})
             }}).catch((err)=>{
-                toast.error(err.response.data.message)
+                toast.error(err.response.data.message,{position:"top-right"})
             })
     }
 

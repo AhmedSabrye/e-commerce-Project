@@ -13,7 +13,6 @@ export default function CartContextProvider({ children }) {
     const [cartId, setCartId] = useState(null);
 
     async function getCart() {
-        console.log("get cart itself");
         axios
             .get("https://ecommerce.routemisr.com/api/v1/cart", {
                 headers: {
@@ -24,10 +23,8 @@ export default function CartContextProvider({ children }) {
                 setNumOfCartItems(res.data.numOfCartItems);
                 setAllProducts(res.data.data.products);
                 setTotalCartPrice(res.data.data.totalCartPrice);
-                console.log("in getcart then", res);
                 setCartId(res.data.data._id);
 
-                console.log(allProducts, totalCartPrice, numOfCartItems);
             })
             .catch((err) => {
                 if (err.response.data.statusMsg == "fail") {
@@ -63,7 +60,7 @@ export default function CartContextProvider({ children }) {
                 getCart();
             })
             .catch((err) => {
-                console.log(err);
+                
             });
     }
 
@@ -84,7 +81,6 @@ export default function CartContextProvider({ children }) {
     }
 
     function clearCart() {
-        console.log("we are here but still out")
         axios
             .delete(`https://ecommerce.routemisr.com/api/v1/cart`, {
                 headers: {
@@ -99,7 +95,6 @@ export default function CartContextProvider({ children }) {
                     position: "bottom-right",
                 });
                 getCart();
-                console.log("we are here")
             });
     }
 

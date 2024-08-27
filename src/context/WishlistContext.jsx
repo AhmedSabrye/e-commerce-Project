@@ -66,11 +66,9 @@ export default function WishlistContext({ children }) {
 
     function modifyWishlistItem(id) {
         if (wishlistArray.some((obj) => obj._id == id)) {
-            console.log("removeinmodify");
             return removeFromWishlist(id);
         }
         if (!wishlistArray.some((obj) => obj._id == id)) {
-            console.log("addinmodify");
             return addToWishlist(id);
         }
     }

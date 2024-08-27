@@ -28,7 +28,6 @@ export default function ProductDetails() {
         setImageCover(newData?.imageCover);
     }, [newData]);
     if (isError) {
-        console.log(error);
         return <div>Error</div>;
     }
     if (isLoading)

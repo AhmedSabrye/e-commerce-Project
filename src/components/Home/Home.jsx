@@ -9,17 +9,13 @@ import { wishlistContextObject } from "../../context/WishlistContext";
 
 export default function Home() {
     // const [allProducts, setAllProducts] = useState(null);
-    const { modifyWishlistItem } = useContext(wishlistContextObject);
+    const { modifyWishlistItem,getWishlist } = useContext(wishlistContextObject);
     function getAllProducts() {
         return axios.get("https://ecommerce.routemisr.com/api/v1/products");
-        // .then((res) => {
-        //     setAllProducts(res.data.data);
-        // })
-        // .catch((err) => {
-        //     console.log(err);
-        // });
     }
-    useEffect(() => {}, []);
+    useEffect(() => {
+        getWishlist()
+    }, []);
 
     const { isError, isLoading, data, error } = useQuery({
         queryKey: ["allProducts"],
@@ -37,15 +33,15 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <div className="dark:bg-slate-600">
             {!isLoading ? (
-                <div className="container  mx-auto my-5">
+                <div className="container mx-auto my-5">
                     <Landing />
                     <div className="px-12">
                         <PopularCategories />
                     </div>
                     <div className="flex justify-center items-center min-h-24">
-                        <div className=" grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 px-24 grid gap-5">
+                        <div className=" grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  px-24 grid gap-5">
                             {data.data.data.map((product) => {
                                 return (
                                     <Product

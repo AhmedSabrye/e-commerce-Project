@@ -7,7 +7,6 @@ export default function TokenContext({ children }) {
     
     function newToken(val){
         setToken(val)
-        console.log("from token Context" , token)
     }
 
     return (

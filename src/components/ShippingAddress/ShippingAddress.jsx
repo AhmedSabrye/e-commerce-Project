@@ -26,7 +26,6 @@ export default function ShippingAddress() {
                 }
             )
             .then((res) => {
-                console.log(res);
 
                 toast.success("Cash Payment Confirmed", {
                     position: "top-right",
@@ -65,11 +64,9 @@ export default function ShippingAddress() {
     function managePaymentFunctions(values) {
         if (isOnlinePyament) {
             onlinePayment(values);
-            console.log("online payment buddy");
         }
         if (!isOnlinePyament) {
             cashPayment(values);
-            console.log("Cash payment buddy");
         }
     }
     const shippingAddressForm = useFormik({
