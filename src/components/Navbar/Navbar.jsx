@@ -11,6 +11,7 @@ export default function Navbar() {
     setUserToken(null);
     localStorage.setItem("token", "");
     navigate("/signin");
+    
   }
   const [menu, setMenu] = useState(true);
 
