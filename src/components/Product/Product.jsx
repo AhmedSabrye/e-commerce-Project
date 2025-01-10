@@ -48,7 +48,7 @@ export default function Product({ product }) {
                                 addProduct(product._id);
                                 e.preventDefault();
                             }}
-                            className="bg-emerald-400 active:bg-emerald-900 w-full py-2 text-black hover:text-white group-hover:opacity-100 opacity-0 relative top-24 group-hover:top-0 transition-all duration-300 hover:bg-emerald-600 text-sm"
+                            className="bg-emerald-400 active:bg-emerald-900 w-full py-2 text-black hover:text-white text-xl group-hover:opacity-100 lg:opacity-0 relative ns:top-24 top-0 sm:group-hover:top-0 transition-all duration-300 hover:bg-emerald-600"
                         >
                             Add to Cart
                         </button>

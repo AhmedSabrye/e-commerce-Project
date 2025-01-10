@@ -17,11 +17,11 @@ export default function Cart() {
 
     useEffect(() => {
         getCart();
-
         return;
     }, []);
     return (
         <div>
+          {cartId == null || cartId == undefined ? <div className="h-96 flex justify-center items-center"><h1 className="text-center text-3xl font-bold "> cart is empty</h1></div> : <div>
             <div className="relative overflow-x-auto max-w-screen-xl mx-auto my-6 shadow-md sm:rounded-lg">
                 <div className="my-8 flex justify-between items-center px-8">
                     <div className="">
@@ -195,6 +195,7 @@ export default function Cart() {
             >
                 Clear Cart
             </button>
+        </div>}
         </div>
     );
 }

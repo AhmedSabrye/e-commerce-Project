@@ -33,7 +33,7 @@ export default function Home() {
     }
 
     return (
-        <div className="dark:bg-slate-600">
+        <div className="">
             {!isLoading ? (
                 <div className="container mx-auto my-5">
                     <Landing />
@@ -41,7 +41,7 @@ export default function Home() {
                         <PopularCategories />
                     </div>
                     <div className="flex justify-center items-center min-h-24">
-                        <div className=" grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  px-24 grid gap-5">
+                        <div className=" grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 px-5 sm:px-24 grid gap-5">
                             {data.data.data.map((product) => {
                                 return (
                                     <Product
